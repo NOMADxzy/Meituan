@@ -33,6 +33,6 @@ redis.call('incrby',stockKey,-1)
 --下单（保存用户）
 redis.call('sadd',orderKey,userId)
 --发送消息
-redis.call('xadd','stream.orders','*','userId',userId,'voucherId',voucherId,'id',id)
+redis.call('xadd','stream.orders','*','userId',userId,'voucherId',voucherId,'id',id) -- id为该消息的唯一id，用于ack
 return 0
 
