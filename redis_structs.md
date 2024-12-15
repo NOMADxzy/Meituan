@@ -3,12 +3,14 @@
 ### 一、String
 
 ```shell
+# 验证码登录
 Key: "login:code:{phohe}"
 Value: {code}
 TTL: 设置过期时间以实现自动登出
 ```
 
 ```shell
+# 优惠券库存
 Key: "seckill:stock:{vounch_id}"
 Value: {stock}
 ```
@@ -18,27 +20,26 @@ Value: {stock}
 ```bash
 # 点赞记录
 Key: "blog:liked:{blog_id}"
-Value: {user_id1:like_time1、user_id2:like_time2...}
+Value: {user_id1:like_time1, user_id2:like_time2...}
 ```
 
 ```bash
 # 收件箱
 Key: "feed:{user_id}"
-Value: {blog_id1:pub_time1、blog_id2:pub_time2...}
+Value: {blog_id1:pub_time1, blog_id2:pub_time2...}
 ```
 
 ### 三、Map
 
 ```bash
 # 商铺信息
-Key: "login:token:{shop_id}"
+Key: "cache:shop:{shop_id}"
 Value: Shop{id,name,type,area,score,openHours}
-TTL: 设置过期时间以实现自动登出
 ```
 
 ```bash
 # 用户信息
-Key: "cache:shop:{token}"
+Key: "login:token:{token}"
 Value: UserDTO{id,nickname,icon}
 TTL: 设置过期时间以实现自动登出
 ```
@@ -56,6 +57,18 @@ Value: bits{31}
 ```shell
 # 关注了哪些用户（求共同关注）
 Key: "follows:{user_id}"
+Value: {user_id1, user_id2, ...}
+```
+
+```shell
+# 粉丝集合（求共同粉丝）
+Key: "follows:{user_id}"
+Value: {user_id1, user_id2, ...}
+```
+
+```shell
+# 下单了某个优惠券的用户（去重）
+Key: "seckill:order:{user_id}"
 Value: {user_id1, user_id2, ...}
 ```
 
